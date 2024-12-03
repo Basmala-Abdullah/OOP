@@ -4,6 +4,10 @@
 
 using namespace std;
 
+
+
+
+
 class Complex{
     float real;
     float img;
@@ -12,6 +16,11 @@ public:
     Complex() {
         this->real=0;
         this->img=0;
+    }
+
+    Complex(int real, int img) {
+        this->real=real;
+        this->img=img;
     }
 
 
@@ -31,18 +40,30 @@ public:
         return this->real;
     }
 
-    void addComplex(Complex c){
+    Complex addComplex(Complex c){
         this->real+=c.real;
         this->img+=c.img;
+        return *this;
     }
 
-    void subtractComplex(Complex c){
+    Complex subtractComplex(Complex c){
         this->real-= c.real;
         this->img-=c.img;
+
+        return *this;
     }
 
     void print(){
         cout<<this->real<<" + "<<this->img<<"i"<<endl;
+    }
+
+    void setComplex(int real, int img){
+        this->real = real;
+        this->img = img;
+    }
+
+    ~Complex(){
+        cout<<"Object is deleted"<<endl;
     }
 
 };
