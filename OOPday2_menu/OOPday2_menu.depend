@@ -1,0 +1,30 @@
+# depslib dependency file v1.0
+1733230798 source:c:\users\dell\documents\codeblocks\oopday2_menu\neededfunctions.c
+	"neededFunctions.h"
+
+1733248746 c:\users\dell\documents\codeblocks\oopday2_menu\neededfunctions.h
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<conio.h>
+	<limits>
+	<iostream>
+
+1733249008 source:c:\users\dell\documents\codeblocks\oopday2_menu\main.cpp
+	"stack.h"
+	"string_operations.h"
+
+1733248671 source:c:\users\dell\documents\codeblocks\oopday2_menu\neededfunctions.cpp
+	"neededFunctions.h"
+
+1733247996 c:\users\dell\documents\codeblocks\oopday2_menu\stack.h
+	"neededFunctions.h"
+
+1733239419 source:c:\users\dell\documents\codeblocks\oopday2_menu\stack.cpp
+	"stack.h"
+
+1733248399 source:c:\users\dell\documents\codeblocks\oopday2_menu\string_operations.cpp
+	"string_operations.h"
+
+1733248250 c:\users\dell\documents\codeblocks\oopday2_menu\string_operations.h
+
