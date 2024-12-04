@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1733345768 source:c:\users\dell\documents\codeblocks\oopday3_string\main.cpp
+	<iostream>
+	"string_operations.h"
+
+1733248250 c:\users\dell\documents\codeblocks\oopday3_string\string_operations.h
+
+1733248399 source:c:\users\dell\documents\codeblocks\oopday3_string\string_operations.cpp
+	"string_operations.h"
+
