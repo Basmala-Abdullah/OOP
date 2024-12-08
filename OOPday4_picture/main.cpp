@@ -10,6 +10,7 @@ public:
   Shape():color(WHITE) {}
   Shape(int c):color(c) {}
   int getColor(){return color;}
+  virtual void draw() = 0;
 };
 
 
@@ -28,7 +29,7 @@ class Line:public Shape {
 private:
     Point start;
     Point end;
-
+    
 public:
     Line() : start(), end(), Shape() {}
     Line(int x1, int y1, int x2, int y2, int c = WHITE) : start(x1, y1), end(x2, y2), Shape(c) {}
@@ -58,7 +59,7 @@ class Circle:public Shape {
 private:
     Point center;
     int radius;
-
+    
 public:
     Circle() : center(), radius(0),  Shape() {}
     Circle(int m, int n, int r, int c = WHITE) : center(m, n), radius(r), Shape(c) {}
@@ -75,10 +76,39 @@ private:
     Circle* pCircles;
     Rect* pRects;
     Line* pLines;
+    /////
+    int size;
+    int currentIndex=-1;
+    Shape **items;
+    ////
 
 public:
     Picture() : cNum(0), rNum(0), lNum(0), pCircles(nullptr), pRects(nullptr), pLines(nullptr) {}
 
+    Picture(int size){
+      this->size=size;
+      items = new Shape*[size];
+      currentIndex=-1;
+    }
+    
+    void addShape(Shape *s){
+      if(currentIndex == size-1){
+        return;
+      }
+      
+      currentIndex++;
+      items[currentIndex]=s;
+    
+    }
+    
+    void paintx(){
+    
+      for(int i=0; i<=currentIndex ; i++){
+        items[i]->draw();
+      }
+    
+    }
+    
     void setCircles(int cn, Circle* pC) {
         cNum = cn;
         pCircles = pC;
@@ -105,6 +135,14 @@ public:
             pLines[i].draw();
         }
     }
+    
+    ~Picture() {
+    for(int i=0;i<=currentIndex;i++) {
+        delete items[i];
+    }
+    delete[]items;
+}
+
 };
 
 int main() {
@@ -114,20 +152,28 @@ int main() {
 
     Picture myPic;
 
-    Circle cArr[3] = {
+    Circle cArr[3] = { 
         Circle(230, 250, 50, RED),
         Circle(370, 250, 50, RED),
         Circle(300, 300, 200, GREEN)
     };
     Rect rArr[1] = { Rect(200, 350, 400, 400, CYAN) };
-    Line lArr[2] = {
-        Line(240, 350, 240, 400, YELLOW),
-        Line(280, 350, 280, 400, YELLOW)
+    Line lArr[2] = { 
+        Line(240, 350, 240, 400, YELLOW), 
+        Line(280, 350, 280, 400, YELLOW) 
     };
 
     myPic.setCircles(3, cArr);
     myPic.setRects(1, rArr);
     myPic.setLines(2, lArr);
+    //////////////////
+    Picture p(5);
+    p.addShape(new Circle(100,100,20));
+    p.addShape(new Line(150,150,100,100));
+    p.addShape(new Rect(160,160,290,25));
+    
+    p.paintx();
+    //////////////////
 
     myPic.paint();
 
