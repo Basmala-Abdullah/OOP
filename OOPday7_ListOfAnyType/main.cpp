@@ -2,20 +2,20 @@
 #include <string>
 using namespace std;
 
-class Data {
+class Value {
 public:
-    ~Data() {}
+    ~Value() {}
     virtual void display()=0;
 };
 
 
 template <typename T>
-class DataHolder:public Data {
+class ValueContent:public Value {
 private:
     T value;
 
 public:
-    DataHolder(T val){
+    ValueContent(T val){
         value=val;
     }
     void display() {
@@ -29,7 +29,7 @@ public:
 class List{
 private:
     int size;
-    Data** items;
+    Value** items;
 
 public:
     List(){
@@ -46,23 +46,23 @@ public:
 
     template <typename T>
     void push(T value){
-        Data** newList = new Data*[size+1];
+        Value** newList = new Value*[size+1];
         for (int i=0;i<size; ++i) {
             newList[i]=items[i];
         }
-        newList[size]=new DataHolder<T>(value);
+        newList[size]=new ValueContent<T>(value);
         delete[] items;
         items = newList;
         size++;
     }
 
-    bool pop(Data** poppedValue) {
+    bool pop(Value** poppedValue) {
         if (size == 0) {
             return false;
         }
 
         *poppedValue=items[size - 1];
-        Data** newList = new Data*[size - 1];
+        Value** newList = new Value*[size - 1];
         for (int i = 0; i < size - 1; ++i) {
             newList[i] = items[i];
         }
@@ -103,7 +103,7 @@ int main() {
             cout<<"Your list after push: ";
             myList.printList();
         } else if (choice == 2) {
-            Data* poppedValue;
+            Value* poppedValue;
             if (myList.pop(&poppedValue)) {
                 cout << "Popped value: ";
                 poppedValue->display();
